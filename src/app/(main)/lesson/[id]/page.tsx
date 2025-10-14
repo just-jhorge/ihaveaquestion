@@ -1,6 +1,5 @@
-import LessonQuestion from "@/components/custom/lesson-question";
-import Navbar from "@/components/custom/navbar";
 import { Badge } from "@/components/ui/badge";
+import Navbar from "@/components/custom/navbar";
 import { Button } from "@/components/ui/button";
 import { HandIcon, MegaphoneIcon } from "lucide-react";
 

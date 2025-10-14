@@ -1,8 +1,7 @@
-import LessonCard from "@/components/custom/lesson-card";
-import Navbar from "@/components/custom/navbar";
-import { Button } from "@/components/ui/button";
-import { DoorOpen, GraduationCap } from "lucide-react";
 import Link from "next/link";
+import { DoorOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Navbar from "@/components/custom/navbar";
 
 export default function Home() {
   return (
