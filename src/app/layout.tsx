@@ -1,7 +1,7 @@
-import "../styles/globals.css";
 import type { Metadata } from "next";
 import { Architects_Daughter } from "next/font/google";
-import Navbar from "@/components/custom/navbar";
+
+import "./globals.css";
 
 const architectsDaughter = Architects_Daughter({
   subsets: ["latin"],
@@ -22,7 +22,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="max-w-3xl mx-auto min-h-svh px-2 xl:px-0">
-        <Navbar />
         {children}
       </body>
     </html>

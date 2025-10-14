@@ -1,31 +1,40 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { getSession } from "@/lib/get-session";
+import { BookCheckIcon, HomeIcon, LogOutIcon } from "lucide-react";
+import LogOutButton from "./logout-button";
 
-const user1 = {
-  name: "George Sarpong Afrifa",
-  email: "gsafrifa@gmail.com",
-  lessons: [
-    {
-      id: 1,
-      title: "Privacy and Confidentiality in Healthcare",
-    },
-    { id: 2, title: "Telehealth" },
-    { id: 3, title: "Electronic Health Record" },
-  ],
-  questions: [
-    { id: 1, lessonId: 1, question: "Please what is confidentiality" },
-  ],
-};
+export default async function Navbar() {
+  const session = await getSession();
+  const user = session?.user;
 
-const user2 = null;
-
-export default function Navbar() {
   return (
     <nav className="h-14 w-full flex items-center justify-between border-b-2">
       <Button size="sm" asChild>
-        <Link href="/">Home</Link>
+        <Link href="/">
+          <HomeIcon />
+          HOME
+        </Link>
       </Button>
-      {user2 ? (
+      {user ? (
+        <div className="flex items-center gap-2">
+          <Button size="sm" asChild>
+            <Link href="/t/lessons">
+              <BookCheckIcon />
+              LESSONS
+            </Link>
+          </Button>
+          <LogOutButton />
+        </div>
+      ) : (
+        <div className="space-x-2">
+          <Button size="sm" asChild>
+            <Link href="/auth/signin">SIGN IN</Link>
+          </Button>
+          <Button size="sm">GET ONBOARD</Button>
+        </div>
+      )}
+      {/* {user ? (
         <div className="space-x-2">
           <Button size="sm" asChild>
             <Link href="/lessons">Lessons</Link> border-2
@@ -37,13 +46,13 @@ export default function Navbar() {
       ) : (
         <div className="space-x-2">
           <Button size="sm" asChild>
-            <Link href="/sign-in">Sign In</Link>
+            <Link href="/auth/signin">Sign In</Link>
           </Button>
           <Button size="sm" asChild>
-            <Link href="/sign-up">Sign Up</Link>
+            <Link href="/auth/signup">Sign Up</Link>
           </Button>
         </div>
-      )}
+      )} */}
     </nav>
   );
 }

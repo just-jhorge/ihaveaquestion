@@ -5,7 +5,7 @@ export default function LessonQuestion() {
   return (
     <article className="flex items-start first:border-t not-last:border-b border-border py-5">
       <div className="flex-1">
-        <h1 className="text-xl mb-2">
+        <h1 className="text-base xl:text-xl mb-2">
           Please can you explain confidentiality better?
         </h1>
         <div className="space-x-1">
