@@ -11,7 +11,6 @@ import {
 import {
   Card,
   CardTitle,
-  CardFooter,
   CardHeader,
   CardContent,
   CardDescription,
@@ -135,16 +134,6 @@ export default function SignInForm() {
           </form>
         </Form>
       </CardContent>
-      <CardFooter>
-        <div className="flex w-full justify-center border-t pt-4">
-          <p className="text-muted-foreground text-center text-xs">
-            Don&apos;t have an account?{" "}
-            <Link href="/auth/signup" className="underline">
-              Sign up
-            </Link>
-          </p>
-        </div>
-      </CardFooter>
     </Card>
   );
 }

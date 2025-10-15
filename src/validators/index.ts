@@ -13,3 +13,10 @@ export const questionSchema = z.object({
 });
 
 export type QuestionValues = z.infer<typeof questionSchema>;
+
+export const lessonSchema = z.object({
+  tutorId: z.string(),
+  topic: z.string(),
+});
+
+export type LessonValues = z.infer<typeof lessonSchema>;

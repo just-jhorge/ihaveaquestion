@@ -1,6 +1,7 @@
 import { getSession } from "@/lib/get-session";
 import { redirect } from "next/navigation";
 import Lessons from "./Lessons";
+import prisma from "@/lib/prisma";
 
 export default async function Page() {
   const session = await getSession();
@@ -8,5 +9,14 @@ export default async function Page() {
 
   if (!user) redirect("/auth/signin");
 
-  return <Lessons />;
+  const lessons = await prisma.lesson.findMany({
+    where: { tutorId: user.id },
+    orderBy: { createdAt: "desc" },
+  });
+
+  if (!lessons) {
+    return <div>No lessons found.</div>;
+  }
+
+  return <Lessons userId={user.id} lessons={lessons} />;
 }
