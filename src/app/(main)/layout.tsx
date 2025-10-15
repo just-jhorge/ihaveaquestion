@@ -5,5 +5,5 @@ export default function Mainlayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="max-w-2xl mx-auto px-4 xl:px-0">{children}</div>;
 }

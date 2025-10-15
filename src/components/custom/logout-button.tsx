@@ -21,9 +21,8 @@ export default function LogOutButton() {
   }
 
   return (
-    <Button onClick={handleLogOut} variant="destructive" size="sm">
+    <Button onClick={handleLogOut} variant="destructive" size="icon-sm">
       <LogOutIcon />
-      LOG OUT
     </Button>
   );
 }

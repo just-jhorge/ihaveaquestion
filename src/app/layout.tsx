@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Architects_Daughter } from "next/font/google";
 
 import "./globals.css";
+import QueryProvider from "@/providers/query-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { Toaster } from "sonner";
 
 const architectsDaughter = Architects_Daughter({
   subsets: ["latin"],
@@ -21,8 +24,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="max-w-3xl mx-auto min-h-svh px-2 xl:px-0">
-        {children}
+      <body>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster richColors position="top-center" />
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

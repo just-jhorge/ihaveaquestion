@@ -14,9 +14,9 @@ export default async function TutorLayout({
   }
 
   return (
-    <>
+    <div className="max-w-2xl mx-auto px-4 xl:px-0">
       <Navbar />
       {children}
-    </>
+    </div>
   );
 }

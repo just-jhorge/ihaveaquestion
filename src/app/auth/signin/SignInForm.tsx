@@ -139,7 +139,7 @@ export default function SignInForm() {
         <div className="flex w-full justify-center border-t pt-4">
           <p className="text-muted-foreground text-center text-xs">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="underline">
+            <Link href="/auth/signup" className="underline">
               Sign up
             </Link>
           </p>
