@@ -42,38 +42,41 @@ export default function Lessons() {
     <section className="w-full py-5">
       <h2 className="mb-5 font-medium text-lg">Active Lessons:</h2>
       <div className="space-y-6">
-        {lessons.map((lesson, idx) => (
-          <div
-            key={lesson.id}
-            className="flex items-start justify-between gap-3"
-          >
-            <div className="flex items-start">
-              <h3 className="mr-2 text-lg">{idx + 1}.</h3>
-              <div>
-                <h2 className="font-semibold text-base xl:text-lg">
-                  {lesson.topic}
-                </h2>
-                <div className="flex items-center gap-1">
-                  <p className="text-xs xl:text-sm text-muted-foreground">
-                    {lesson.questions.length}{" "}
-                    {lesson.questions.length === 1 ? "Question" : "Questions"}
-                  </p>
-                  <DotIcon />
-                  <p className="text-sm text-muted-foreground">
-                    {format(lesson.createdAt, "dd MMM yyyy")}
-                  </p>
+        {lessons.length === 0 ? (
+          <div>There are currently no active lessons</div>
+        ) : (
+          lessons.map((lesson, idx) => (
+            <div
+              key={lesson.id}
+              className="flex items-start justify-between gap-3"
+            >
+              <div className="flex items-start">
+                <h3 className="mr-2 text-lg">{idx + 1}.</h3>
+                <div>
+                  <h2 className="font-semibold text-base xl:text-lg">
+                    {lesson.topic}
+                  </h2>
+                  <div className="flex items-center gap-1">
+                    <p className="text-xs xl:text-sm text-muted-foreground">
+                      {lesson.questions.length}{" "}
+                      {lesson.questions.length === 1 ? "Question" : "Questions"}
+                    </p>
+                    <DotIcon />
+                    <p className="text-sm text-muted-foreground">
+                      {format(lesson.createdAt, "dd MMM yyyy")}
+                    </p>
+                  </div>
                 </div>
               </div>
+              <Button variant="secondary" asChild>
+                <Link href={`/lesson/${lesson.id}`}>
+                  <DoorOpen />
+                  Join
+                </Link>
+              </Button>
             </div>
-
-            <Button variant="secondary" asChild>
-              <Link href={`/lesson/${lesson.id}`}>
-                <DoorOpen />
-                Join
-              </Link>
-            </Button>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </section>
   );
