@@ -4,6 +4,7 @@ import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Lesson } from "@prisma/client";
 import NewLessonButton from "./NewLessonButton";
+import Link from "next/link";
 
 export default function Lessons({
   userId,
@@ -28,7 +29,9 @@ export default function Lessons({
             <div key={idx} className="flex items-center justify-between">
               <div className="flex-1 flex items-center gap-2">
                 <h2>{idx + 1}.</h2>
-                <h2 className="text-lg">{lesson.topic}</h2>
+                <Link href={`/t/lessons/${lesson.id}`} className="text-lg">
+                  {lesson.topic}
+                </Link>
               </div>
               <Button size="icon-sm" variant="destructive">
                 <Trash />

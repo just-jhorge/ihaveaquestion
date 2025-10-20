@@ -20,3 +20,10 @@ export const lessonSchema = z.object({
 });
 
 export type LessonValues = z.infer<typeof lessonSchema>;
+
+export const answerSchema = z.object({
+  questionId: z.string(),
+  answer: z.string(),
+});
+
+export type AnswerValues = z.infer<typeof answerSchema>;

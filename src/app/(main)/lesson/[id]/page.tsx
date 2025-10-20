@@ -71,9 +71,7 @@ export default async function Page({ params }: { params: Params }) {
                       <HandIcon className="mr-1" /> {question.askedBy}
                     </Badge>
                     <Badge
-                      variant={
-                        question.isAnswered ? "destructive" : "destructive"
-                      }
+                      variant={question.isAnswered ? "default" : "destructive"}
                     >
                       <MegaphoneIcon className="mr-1" />
                       {question.isAnswered ? "Answered" : "Not Answered"}
