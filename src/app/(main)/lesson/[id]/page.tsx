@@ -6,12 +6,18 @@ import { cache } from "react";
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import QuestionModalButton from "./QuestionModalButton";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 type Params = Promise<{ id: string }>;
 
 const getLesson = cache(async (id: string) => {
   const lesson = await prisma.lesson.findUnique({
-    where: { id, isActive: true },
+    where: { id },
     select: {
       id: true,
       topic: true,
@@ -49,37 +55,35 @@ export default async function Page({ params }: { params: Params }) {
         </div>
         <div>
           {lesson.questions.length === 0 ? (
-            <p>There are no questions for this lesson.</p>
+            <p className="text-lg text-muted-foreground">
+              There are no questions for this lesson.
+            </p>
           ) : (
-            lesson.questions.map((question, idx) => (
-              <article
-                key={idx}
-                className="not-last:border-b border-border py-5"
-              >
-                <div className="flex-1">
-                  <div className="flex items-center mb-2">
-                    <div className="mr-2">{idx + 1}.</div>
-                    <h1 className="text-base xl:text-xl">
-                      {question.question}
-                    </h1>
-                  </div>
-                  <div className="space-x-2">
-                    <Badge
-                      variant="outline"
-                      className="bg-emerald-600 text-white"
-                    >
-                      <HandIcon className="mr-1" /> {question.askedBy}
-                    </Badge>
-                    <Badge
-                      variant={question.isAnswered ? "default" : "destructive"}
-                    >
-                      <MegaphoneIcon className="mr-1" />
-                      {question.isAnswered ? "Answered" : "Not Answered"}
-                    </Badge>
-                  </div>
-                </div>
-              </article>
-            ))
+            <Accordion type="single" collapsible>
+              {lesson.questions.map((q) => (
+                <AccordionItem value={q.id} key={q.id}>
+                  <AccordionTrigger>{q.question}</AccordionTrigger>
+                  <AccordionContent>
+                    {q.isAnswered ? (
+                      <p>Ans: {q.answer}</p>
+                    ) : (
+                      <div className="space-x-2">
+                        <Badge
+                          variant="outline"
+                          className="bg-emerald-600 text-white"
+                        >
+                          <HandIcon className="mr-1" /> {q.askedBy}
+                        </Badge>
+                        <Badge variant="destructive">
+                          <MegaphoneIcon className="mr-1" />
+                          Not Answered
+                        </Badge>
+                      </div>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           )}
         </div>
       </div>
