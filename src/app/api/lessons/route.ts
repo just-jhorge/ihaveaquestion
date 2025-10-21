@@ -4,7 +4,6 @@ import { NextResponse, NextRequest } from "next/server";
 export async function GET(request: NextRequest) {
   try {
     const lessons = await prisma.lesson.findMany({
-      where: { isActive: true },
       include: { questions: true },
       orderBy: { createdAt: "desc" },
     });
